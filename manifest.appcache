@@ -1,0 +1,20 @@
+CACHE MANIFEST
+# Version 20
+# on peut omettre cette ligne car CACHE: est la section par défaut
+CACHE:
+index.html
+style1.css
+style2.css
+js/script.js
+img/bg-cyan.jpg
+img/check.png
+# Ressources qui nécessitent que l'utilisateur soit en ligne
+NETWORK:
+# img/logo.png
+# offline.html sera utilisé si online.html n'est pas accessible
+# offline.html sera utilisé à la place des autres fichiers html s'ils ne sont pas accessibles
+FALLBACK:
+# online.html offline.html
+# *.html offline.html
+
+# attention : pour être bien compris par Apache, il faut ajouter ceci dans la config d'APACHE : AddType text/cache-manifest .appcache

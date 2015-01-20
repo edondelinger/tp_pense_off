@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html manifest="manifest.appcache" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">  
+ 
+	<head>
+		<title>Pense-bête version 0.2</title>
+		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+		
+		<link rel="stylesheet" href="style1.css">
+		<link rel="stylesheet" href="style2.css">
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" href="css/sky-forms-ie8.css">
+		<![endif]-->
+		
+		<!--[if lt IE 10]>
+			<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+			<script src="js/jquery.placeholder.min.js"></script>
+		<![endif]-->		
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="js/sky-forms-ie8.js"></script>
+		<![endif]-->
+		
+		<script type="text/javascript" src="js/script.js"></script>
+		
+		
+	</head>
+	<body class="bg-cyan">
+		<div id="line-status"></div>
+		<div class="body">			
+		
+			<!-- Blue color scheme -->
+			<form action="" class="sky-form" name="frm_ajout_pb">
+				<header>Création d'un pense-bête</header>
+				
+				<fieldset>
+					<section>
+						<label class="label">Date d'échéance</label>
+						<label class="input">
+							<input type="date" name="echeance">
+						</label>
+					</section>
+	
+
+					<section>
+						<label class="label">Description de la tâche</label>
+						<label class="textarea textarea-resizable">
+							<textarea rows="3" name="libelle"></textarea>
+						</label>
+					</section>
+					
+					
+				</fieldset>
+				
+				
+				<footer>
+					<button type="button" class="button" onclick="ajouterNote();">Ajouter</button>
+					<button type="button" class="button button-secondary" onclick="window.history.back();">Retour</button>
+				</footer>
+			</form>
+			<!--/ Blue color scheme -->			
+		</div>
+		
+		<div id="main">
+		
+		<table class="features-table">
+				<thead>
+					<tr>
+						<td></td>
+						<td>Echéance</td>
+						<td>Réalisée</td>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tfoot>					
+				<tbody id="table_content">
+					
+				</tbody>
+		</table>
+	</div>
+		
+	</body>
+</html>
+
+<script>
+
+window.addEventListener('load', function() {
+  var status = document.getElementById("line-status");
+
+  function updateOnlineStatus(event) {
+    status.innerHTML = "Online";
+    log.insertAdjacentHTML("beforeend", "Event: " + event.type + "; Status: ON");
+  }
+  function updateOfflineStatus(event) {
+    status.innerHTML = "Offline";
+    log.insertAdjacentHTML("beforeend", "Event: " + event.type + "; Status: OFF");
+  }	
+  var condition = navigator.onLine ? "online" : "offline";
+  status.innerHTML = condition;
+  window.addEventListener('online',  updateOnlineStatus);
+  window.addEventListener('offline', updateOfflineStatus);
+});
+
+/*
+window.addEventListener('online', function(){
+  var status = document.getElementById('line-status');
+  status.className = 'online';
+  status.innerHTML = 'Online';
+}, false);
+
+window.addEventListener('offline', function(){
+  var status = document.getElementById('line-status');
+  status.className = 'offline';
+  status.innerHTML = 'Offline';
+}, false);
+*/
+chargerLesPenseBetes();
+
+</script>
